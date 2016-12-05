@@ -1,0 +1,1 @@
+web: gunicorn bestreports.wsgi --log-file -
