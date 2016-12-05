@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac6ed425-447f-4aa1-9e19-76d9de3cd73b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FileShare/settings.py" afterPath="$PROJECT_DIR$/FileShare/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FileShare/wsgi.py" afterPath="$PROJECT_DIR$/FileShare/wsgi.py" />
     </list>
     <ignored path="FileShare.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -72,8 +70,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FileShare/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+            <state relative-caret-position="506">
+              <caret line="83" column="48" selection-start-line="83" selection-start-column="48" selection-end-line="83" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -194,10 +192,10 @@
         <option value="$PROJECT_DIR$/reports/templates/reports/viewFolders.html" />
         <option value="$PROJECT_DIR$/reports/templates/reports/viewFolderContent.html" />
         <option value="$PROJECT_DIR$/reports/views.py" />
-        <option value="$PROJECT_DIR$/FileShare/settings.py" />
         <option value="$PROJECT_DIR$/FileShare/wsgi.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/runtime.txt" />
+        <option value="$PROJECT_DIR$/FileShare/settings.py" />
       </list>
     </option>
   </component>
@@ -1156,8 +1154,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FileShare/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="18" column="21" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+        <state relative-caret-position="506">
+          <caret line="83" column="48" selection-start-line="83" selection-start-column="48" selection-end-line="83" selection-end-column="48" />
           <folding />
         </state>
       </provider>
