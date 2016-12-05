@@ -1,1 +1,1 @@
-web: gunicorn bestreports.wsgi --log-file -
+web: gunicorn FileShare.wsgi --log-file -
