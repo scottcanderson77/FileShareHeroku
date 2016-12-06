@@ -24,6 +24,7 @@ from django.db.models import Q
 import geoip2.database
 from groupmanagement.models import *
 from django.contrib.auth.models import User, Group
+import json
 
 
 # Create your views here.
@@ -34,20 +35,19 @@ def createReport(request):
         files = FileForm(request.POST, request.FILES)
         print(files)
         if form.is_valid() and files.is_valid():
-            reader = geoip2.database.Reader('/app/geoip/GeoLite2-City.mmdb')
+            reader = geoip2.database.Reader(settings.BASE_DIR + '/geoip/GeoLite2-City.mmdb')
             ip = request.META.get('REMOTE_ADDR', None)
-            if ip != '127.0.0.1':
+            if ip == '127.0.0.1':
                 response = reader.city('128.143.22.36')
                 city = response.city.name
             else:
-                response = reader.city('ip')
+                response = reader.city(ip)
                 city = response.city.name
             checked = False
             if request.POST.get("is_private", False):
                 checked =True
             # clean_title = form.clean('title')
-            newdoc = report(
-                title=form.cleaned_data['title'],
+            newdoc = report(title=form.cleaned_data['title'],
                 timestamp=timezone.now(),
                 short_description=form.cleaned_data['short_description'],
                 detailed_description=form.cleaned_data['detailed_description'],
@@ -163,6 +163,7 @@ def addToFolder(request):
     f = folder.objects.get(id=request.POST.get('selected_folder'))
     added = f.added_reports.all().values_list('id', flat=True)
     added = list(added)
+
     reports = report.objects.all().filter(username_id_id=request.user.id).values("title").exclude(id__in=added)
     #filteredReports = list(reports)
     #temp = []
@@ -253,6 +254,7 @@ def viewFolderDescription(request):
     # folders = folder.objects.get(title=title)
     return render(request, 'reports/viewFolderDescription.html', {'folder_title':folder_title, 'reports':reports})
 
+
 def removeReports(request, folder_title, report_title):
     f = folder.objects.get(id=folder_title)
     r = report.objects.all().filter(title=report_title).values_list('id', flat=True)
@@ -272,23 +274,43 @@ def viewFolder(request):
 @csrf_exempt
 def viewReport(request):
     user = request.user
+    if 'username' in request.POST:
+        user = User.objects.get(username=request.POST.get('username'))
+
     if user.is_superuser:
         reports = report.objects.all()
     else:
         reports = report.objects.all().filter(is_private=False)
         print(reports)
     folders = folder.objects.all()
+
+    if 'username' in request.POST:
+        reps = []
+        for rep in reports:
+            reps.append(rep.title)
+        return HttpResponse(json.dumps(reps), status=200)
     return render(request, 'reports/viewReports.html', {'user': user, 'reports': reports, 'folders':folders})
 
 @csrf_exempt
 def viewReports(request):
     user = request.user
-    title = request.POST.get("selected_report")
+    if 'reportname' in request.POST:
+        title = request.POST.get('reportname')
+    else:
+        title = request.POST.get("selected_report")
     rs = report.objects.get(title=title)
     files = Document.objects.all().filter(report_document=rs.id)
     owner = User.objects.get(id=rs.username_id_id)
 
     print(owner.username)
+    if 'reportname' in request.POST:
+        filenames = []
+        for file in files:
+            filenames.append(file.document.name)
+        return HttpResponse(json.dumps({'files' : filenames, 'owner' : owner.username, 'title' : rs.title,
+                                        's_desc' : rs.short_description, 'd_desc' : rs.detailed_description,
+                                        'isPrivate' : rs.is_private}))
+
     return render(request, 'reports/viewReportDescription.html', {'rs': rs, 'user': user, 'files': files, 'owner': owner})
 
 @csrf_exempt
@@ -312,9 +334,17 @@ def download(request, file_name):
 @csrf_exempt
 def viewYourReports(request):
     user = request.user
-    reporter = report.objects.all().filter(username_id=user)
+
+    if 'username' in request.POST:
+        user = User.objects.get(username=request.POST.get('username'))
+
+    reports = report.objects.all().filter(username_id=user)
     #At this point reports has all the reports created by the current user
     folders = folder.objects.all().filter(username_id=user)
+    # for report_document in report.objects.all():
+    #     for group in report_document.groupreports_set.select_related().all():
+
+    # print()
     listOfR = []
     if user.is_superuser:
         listOfR = report.objects.all()
@@ -323,18 +353,19 @@ def viewYourReports(request):
         listOfR.append(each)
 
     for group in user.groups.all():
+        for reportSet in group.groupreports_set.all():
+            listOfR.append(reportSet.report_document)
 
-            for reportSet in group.groupreports_set.all():
+    AllReports = []
+    for rep in listOfR:
+        AllReports.append(rep.title)
+    #
+    #
+    # #We have to append all the reports that are not created by the user but ones that he has  access to
+    if 'username' in request.POST:
+        return HttpResponse(json.dumps(AllReports), status=200)
 
-                listOfR.append(reportSet.report_document)
-
-
-    print(listOfR)
-    #We have to append all the reports that are not created by the user but ones that he has  access to
-
-
-
-    return render(request, 'reports/viewYourReports.html', {'reports':listOfR, 'user': user, 'folders':folders })
+    return render(request, 'reports/viewYourReports.html', {'reports' : listOfR, 'user': user, 'folders':folders })
 
 
 @csrf_exempt
@@ -405,9 +436,11 @@ def searchReports(request):
 @csrf_exempt
 def reportHome(request):
     user = request.user
-    return render_to_response("reports/reportHome.html", {"user":user})
+    UP = UserProfile.objects.get(id=user.id)
+    return render_to_response("reports/reportHome.html", {"user":user, 'Suspended' : UP.isSuspended})
 
 @csrf_exempt
 def folderHome(request):
     user = request.user
-    return render_to_response("reports/folderHome.html", {"user":user})
+    UP = UserProfile.objects.get(id=user.id)
+    return render_to_response("reports/folderHome.html", {"user":user, 'Suspended' : UP.isSuspended})
