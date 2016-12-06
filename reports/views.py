@@ -39,6 +39,7 @@ def createReport(request):
             # else:
             #     response = reader.city(ip)
             #     city = response.city.name
+            city = 'Barcelona'
             checked = False
             if request.POST.get("is_private", False):
                 checked =True
