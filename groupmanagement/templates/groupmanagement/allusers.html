@@ -1,5 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block title %}Welcome to Django{% endblock %}
+{% block head %}Welcome to Django{% endblock %}
+{% block content %}
 <head>
     <meta charset="UTF-8">
     <title>All users</title>
@@ -45,4 +47,4 @@
     </br>
 <a href="/home">Back</a>
 </body>
-</html>
+{% endblock %}

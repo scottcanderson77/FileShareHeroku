@@ -42,7 +42,7 @@ def createReport(request):
             city = 'Barcelona'
             checked = False
             if request.POST.get("is_private", False):
-                checked =True
+                checked = True
             # clean_title = form.clean('title')
             newdoc = report(title=form.cleaned_data['title'],
                 timestamp=timezone.now(),
