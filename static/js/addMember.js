@@ -3,7 +3,7 @@
  */
 function addToGroup(username, groupID) {
     $.ajax({
-       url : 'http://127.0.0.1:8000/addmember/',
+       url : 'https://bestreports.herokuapp.com/addmember/',
        type : 'POST',
        data : { 'username' : username.innerHTML, 'groupID' : groupID },
        success : function (data){
