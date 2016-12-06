@@ -22,6 +22,8 @@ from django.utils.encoding import smart_str
 from Crypto.PublicKey import *
 from django.db.models import Q
 import geoip2.database
+from groupmanagement.models import *
+
 
 # Create your views here.
 @csrf_exempt
@@ -309,8 +311,12 @@ def download(request, file_name):
 @csrf_exempt
 def viewYourReports(request):
     user = request.user
-    reports = report.objects.all().filter(username_id=user)
-    folders = folder.objects.all().filter(username_id=user)
+    reports = report.objects.filter(username_id=user)
+    folders = folder.objects.filter(username_id=user)
+    for g in user.groups.all():
+            reports = reports + GroupReports.objects.get(group=g).objects.all()
+            folders = folder.objects.all().filter(username_id=user)
+
     return render(request, 'reports/viewYourReports.html', {'reports':reports, 'user': user, 'folders':folders })
 
 
