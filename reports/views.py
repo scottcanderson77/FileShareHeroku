@@ -40,7 +40,6 @@ def createReport(request):
                 response = reader.city('128.143.22.36')
                 city = response.city.name
             else:
-                print(reader)
                 response = reader.city('128.143.22.36')
                 city = response.city.name
             checked = False
