@@ -1,26 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac6ed425-447f-4aa1-9e19-76d9de3cd73b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/groupmanagement/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/groupmanagement/migrations/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/message/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/message/migrations/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/registration/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/registration/migrations/__init__.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/registration/templates/registration/ReinstateUser.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/registration/templates/registration/SuspendUser.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/reports/migrations/0001_initial.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/reports/migrations/0002_auto_20161205_0620.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/reports/migrations/__init__.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groupmanagement/views.py" afterPath="$PROJECT_DIR$/groupmanagement/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/registration/templates/home.html" afterPath="$PROJECT_DIR$/registration/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/admin.py" afterPath="$PROJECT_DIR$/reports/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/forms.py" afterPath="$PROJECT_DIR$/reports/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/models.py" afterPath="$PROJECT_DIR$/reports/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/views.py" afterPath="$PROJECT_DIR$/reports/views.py" />
-    </list>
+    <list default="true" id="ac6ed425-447f-4aa1-9e19-76d9de3cd73b" name="Default" comment="" />
     <ignored path="FileShare.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
