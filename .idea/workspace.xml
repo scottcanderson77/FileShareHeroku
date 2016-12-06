@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ac6ed425-447f-4aa1-9e19-76d9de3cd73b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groupmanagement/templates/groupmanagement/addReports.html" afterPath="$PROJECT_DIR$/groupmanagement/templates/groupmanagement/addReports.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groupmanagement/templates/groupmanagement/allusers.html" afterPath="$PROJECT_DIR$/groupmanagement/templates/groupmanagement/allusers.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groupmanagement/templates/groupmanagement/createGroups.html" afterPath="$PROJECT_DIR$/groupmanagement/templates/groupmanagement/createGroups.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groupmanagement/templates/groupmanagement/groupActions.html" afterPath="$PROJECT_DIR$/groupmanagement/templates/groupmanagement/groupActions.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groupmanagement/templates/groupmanagement/groupHome.html" afterPath="$PROJECT_DIR$/groupmanagement/templates/groupmanagement/groupHome.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/groupmanagement/templates/groupmanagement/yourgroups.html" afterPath="$PROJECT_DIR$/groupmanagement/templates/groupmanagement/yourgroups.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/message/templates/allMessages.html" afterPath="$PROJECT_DIR$/message/templates/allMessages.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/message/templates/checkMessage.html" afterPath="$PROJECT_DIR$/message/templates/checkMessage.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/registration/templates/home.html" afterPath="$PROJECT_DIR$/registration/templates/home.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/registration/views.py" afterPath="$PROJECT_DIR$/registration/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/forms.py" afterPath="$PROJECT_DIR$/reports/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/models.py" afterPath="$PROJECT_DIR$/reports/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/templates/reports/createFolder.html" afterPath="$PROJECT_DIR$/reports/templates/reports/createFolder.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/templates/reports/createReports.html" afterPath="$PROJECT_DIR$/reports/templates/reports/createReports.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/templates/reports/editReport.html" afterPath="$PROJECT_DIR$/reports/templates/reports/editReport.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/templates/reports/viewFolderContent.html" afterPath="$PROJECT_DIR$/reports/templates/reports/viewFolderContent.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/templates/reports/viewFolders.html" afterPath="$PROJECT_DIR$/reports/templates/reports/viewFolders.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/templates/reports/viewReportDescription.html" afterPath="$PROJECT_DIR$/reports/templates/reports/viewReportDescription.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/templates/reports/viewReports.html" afterPath="$PROJECT_DIR$/reports/templates/reports/viewReports.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/templates/reports/viewYourReports.html" afterPath="$PROJECT_DIR$/reports/templates/reports/viewYourReports.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/views.py" afterPath="$PROJECT_DIR$/reports/views.py" />
-    </list>
+    <list default="true" id="ac6ed425-447f-4aa1-9e19-76d9de3cd73b" name="Default" comment="" />
     <ignored path="FileShare.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -285,6 +263,38 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="FileShareHeroku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FileShareHeroku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FileShareHeroku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="registration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FileShareHeroku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FileShareHeroku" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="registration" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
