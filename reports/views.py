@@ -34,7 +34,7 @@ def createReport(request):
         files = FileForm(request.POST, request.FILES)
         print(files)
         if form.is_valid() and files.is_valid():
-            reader = geoip2.database.Reader('/geoip/GeoLite2-City.mmdb')
+            reader = geoip2.database.Reader('app/geoip/GeoLite2-City.mmdb')
             ip = request.META.get('REMOTE_ADDR', None)
             if ip == '127.0.0.1':
                 response = reader.city('128.143.22.36')
