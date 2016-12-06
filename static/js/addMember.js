@@ -17,7 +17,7 @@ function addToGroup(username, groupID) {
 
 function removeFromGroup(username, groupID) {
     $.ajax({
-       url : 'http://127.0.0.1:8000/removeMember/',
+       url : 'https://bestreports.herokuapp.com/removeMember/',
        type : 'POST',
        data : { 'username' : username.innerHTML, 'groupID' : groupID },
        success : function (data){
@@ -31,7 +31,7 @@ function removeFromGroup(username, groupID) {
 
 function changeRole(username, isSM) {
     $.ajax({
-        url : 'http://127.0.0.1:8000/updatePrivilege/',
+        url : 'https://bestreports.herokuapp.com/updatePrivilege/',
         type : 'POST',
         data : { 'username' : username.innerHTML, 'isSM' : isSM },
         success : function (data){
