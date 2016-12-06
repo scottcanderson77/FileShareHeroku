@@ -36,11 +36,11 @@ def createReport(request):
         if form.is_valid() and files.is_valid():
             reader = geoip2.database.Reader('/app/geoip/GeoLite2-City.mmdb')
             ip = request.META.get('REMOTE_ADDR', None)
-            if ip == '127.0.0.1':
+            if ip != '127.0.0.1':
                 response = reader.city('128.143.22.36')
                 city = response.city.name
             else:
-                response = reader.city('128.143.22.36')
+                response = reader.city('ip')
                 city = response.city.name
             checked = False
             if request.POST.get("is_private", False):
