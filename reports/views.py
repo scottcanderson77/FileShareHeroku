@@ -23,6 +23,7 @@ from Crypto.PublicKey import *
 from django.db.models import Q
 import geoip2.database
 from groupmanagement.models import *
+from django.contrib.auth.models import User, Group
 
 
 # Create your views here.
@@ -33,20 +34,20 @@ def createReport(request):
         files = FileForm(request.POST, request.FILES)
         print(files)
         if form.is_valid() and files.is_valid():
-            # reader = geoip2.database.Reader(settings.BASE_DIR + '/geoip/GeoLite2-City.mmdb')
-            # ip = request.META.get('REMOTE_ADDR', None)
-            # if ip == '127.0.0.1':
-            #     response = reader.city('128.143.22.36')
-            #     city = response.city.name
-            # else:
-            #     response = reader.city(ip)
-            #     city = response.city.name
-            city = 'Barcelona'
+            reader = geoip2.database.Reader(settings.BASE_DIR + '/geoip/GeoLite2-City.mmdb')
+            ip = request.META.get('REMOTE_ADDR', None)
+            if ip == '127.0.0.1':
+                response = reader.city('128.143.22.36')
+                city = response.city.name
+            else:
+                response = reader.city(ip)
+                city = response.city.name
             checked = False
             if request.POST.get("is_private", False):
-                checked = True
+                checked =True
             # clean_title = form.clean('title')
-            newdoc = report(title=form.cleaned_data['title'],
+            newdoc = report(
+                title=form.cleaned_data['title'],
                 timestamp=timezone.now(),
                 short_description=form.cleaned_data['short_description'],
                 detailed_description=form.cleaned_data['detailed_description'],
@@ -162,7 +163,6 @@ def addToFolder(request):
     f = folder.objects.get(id=request.POST.get('selected_folder'))
     added = f.added_reports.all().values_list('id', flat=True)
     added = list(added)
-
     reports = report.objects.all().filter(username_id_id=request.user.id).values("title").exclude(id__in=added)
     #filteredReports = list(reports)
     #temp = []
@@ -275,7 +275,8 @@ def viewReport(request):
     if user.is_superuser:
         reports = report.objects.all()
     else:
-        reports = report.objects.all().filter(is_private="False")
+        reports = report.objects.all().filter(is_private=False)
+        print(reports)
     folders = folder.objects.all()
     return render(request, 'reports/viewReports.html', {'user': user, 'reports': reports, 'folders':folders})
 
@@ -311,14 +312,29 @@ def download(request, file_name):
 @csrf_exempt
 def viewYourReports(request):
     user = request.user
-    reports = report.objects.filter(username_id=user)
-    folders = folder.objects.filter(username_id=user)
-    # for g in user.groups.all():
-    #     set = g.groupreports_set
-    #     reports = reports+set
-    #     folders = folder.objects.all().filter(username_id=user)
+    reporter = report.objects.all().filter(username_id=user)
+    #At this point reports has all the reports created by the current user
+    folders = folder.objects.all().filter(username_id=user)
+    listOfR = []
+    if user.is_superuser:
+        listOfR = report.objects.all()
 
-    return render(request, 'reports/viewYourReports.html', {'reports':reports, 'user': user, 'folders':folders })
+    for each in report.objects.filter(username_id=user):
+        listOfR.append(each)
+
+    for group in user.groups.all():
+
+            for reportSet in group.groupreports_set.all():
+
+                listOfR.append(reportSet.report_document)
+
+
+    print(listOfR)
+    #We have to append all the reports that are not created by the user but ones that he has  access to
+
+
+
+    return render(request, 'reports/viewYourReports.html', {'reports':listOfR, 'user': user, 'folders':folders })
 
 
 @csrf_exempt

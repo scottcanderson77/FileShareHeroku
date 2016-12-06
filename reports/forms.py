@@ -5,7 +5,7 @@ from .models import folder
 from .models import Document
 from django.forms import ModelForm
 class ReportForm(forms.Form):
-    title = forms.CharField()
+    title = forms.CharField(max_length=100)
     short_description = forms.CharField(max_length=30)
     detailed_description = forms.CharField(max_length=200, widget=forms.Textarea(attrs={'rows':4, 'cols':40}))
     is_private = forms.BooleanField(required=False)

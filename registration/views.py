@@ -61,7 +61,7 @@ def logout_page(request):
     return HttpResponseRedirect('/')
 
 
-@login_required#(redirect_field_name='login')
+@login_required
 def home(request):
     isSuperUser = False
     if request.user.is_superuser: isSuperUser = True
