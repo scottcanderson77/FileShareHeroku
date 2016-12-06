@@ -12,7 +12,6 @@ from groupmanagement.models import GroupReports
 import json
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
-from registration.models import UserProfile
 
 
 
@@ -130,5 +129,4 @@ def addReports(request):
 @login_required()
 def groupHome(request):
     user = request.user
-    UP = UserProfile.objects.get(id=user.id)
-    return render_to_response("groupmanagement/groupHome.html", {"user":user, 'Suspended' : UP.isSuspended})
+    return render_to_response("groupmanagement/groupHome.html", {"user":user})

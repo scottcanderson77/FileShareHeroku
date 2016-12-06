@@ -1,54 +1,46 @@
+# files.py
+import re
 from django import forms
 from django.contrib.auth.models import User, Group
-from .models import report
-from .models import folder
-from .models import Document
-from django.forms import ModelForm
-class ReportForm(forms.Form):
-    title = forms.CharField(max_length=100)
-    short_description = forms.CharField(max_length=30)
-    detailed_description = forms.CharField(max_length=200, widget=forms.Textarea(attrs={'rows':4, 'cols':40}))
-    is_private = forms.BooleanField(required=False)
-    # document = forms.FileField(label='Select a file',
-    #                            required=False)
-    # document = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}), label='Select a file', required=False)
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth import authenticate
+
+
+
+#siteMan = User.objects.create_user('scott','scott@scott.com', 'scottpassword')
+#siteMan.last_name = "anderson"
+#siteMan.save()
+#siteManager = Group.objects.get(name = 'siteManager')
+#siteManager.user_set.add(User.objects.get('scott'))
+
+class RegistrationForm(forms.Form):
+    username = forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs=dict(required=True, max_length=30)),
+            label=_("Username"), error_messages={
+            'invalid': _("This value must contain only letters, numbers and underscores.")})
+
+    email = forms.EmailField(widget=forms.TextInput(attrs=dict(required=True, max_length=30)), label=_("Email address"))
+
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)), label=_("Password"))
+
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs=dict(required=True, max_length=30, render_value=False)),
+        label=_("Password (again)"))
+
+    def clean_username(self):
+        try:
+            user = User.objects.get(username__iexact=self.cleaned_data['username'])
+        except User.DoesNotExist:
+            return self.cleaned_data['username']
+        raise forms.ValidationError(_("The username already exists. Please try another one."))
 
     def clean(self):
-        try:
-            report.objects.get(title=self.cleaned_data['title'])
-            # if we get this far, we have an exact match for this form's data
-            raise forms.ValidationError("Exists already!")
-        except report.DoesNotExist:
-            # because we didn't get a match
-            pass
+        if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data:
+            if self.cleaned_data['password1'] != self.cleaned_data['password2']:
+                raise forms.ValidationError(_("The two password fields did not match."))
         return self.cleaned_data
-    # class Meta:
-    #     model = report
-    #     fields = ('title','detailed_description','short_description', 'document','is_private', 'location', 'is_encrypted', 'username_id' )
-class FileForm(forms.Form):
-    document = forms.FileField(label='Select a file', required=False)
-    is_encrypted = forms.BooleanField(required=False, label="Encrypt File")
-    document2 = forms.FileField(label='Select a file', required=False)
-    is_encrypted2 = forms.BooleanField(required=False, label="Encrypt FIle")
-    document3 = forms.FileField(label='Select a file', required=False)
-    is_encrypted3 = forms.BooleanField(required=False, label="Encrypt File")
 
-
-
+class GroupForm(forms.ModelForm):
     class Meta:
-        model = Document
-        fields = {'document', 'is_encrypted','document1', 'is_encrypted1','document3', 'is_encrypted3'}
-
-class FolderForm(forms.Form):
-    title = forms.CharField()
-
-    def clean(self):
-        try:
-            folder.objects.get(title=self.cleaned_data['title'])
-            # if we get this far, we have an exact match for this form's data
-            raise forms.ValidationError("Exists already!")
-        except folder.DoesNotExist:
-            # because we didn't get a match
-            pass
-        return self.cleaned_data
-
+        model = Group
+        fields = ('name',)
