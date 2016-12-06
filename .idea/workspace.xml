@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ac6ed425-447f-4aa1-9e19-76d9de3cd73b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reports/views.py" afterPath="$PROJECT_DIR$/reports/views.py" />
     </list>
     <ignored path="FileShare.iws" />
@@ -33,8 +32,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/reports/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="316" column="95" selection-start-line="316" selection-start-column="95" selection-end-line="316" selection-end-column="95" />
+            <state relative-caret-position="186">
+              <caret line="314" column="53" selection-start-line="314" selection-start-column="53" selection-end-line="314" selection-end-column="53" />
               <folding>
                 <element signature="e#24#59#0" expanded="true" />
               </folding>
@@ -1136,8 +1135,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/reports/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="316" column="95" selection-start-line="316" selection-start-column="95" selection-end-line="316" selection-end-column="95" />
+        <state relative-caret-position="186">
+          <caret line="314" column="53" selection-start-line="314" selection-start-column="53" selection-end-line="314" selection-end-column="53" />
           <folding>
             <element signature="e#24#59#0" expanded="true" />
           </folding>
