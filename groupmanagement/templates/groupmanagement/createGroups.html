@@ -2,6 +2,8 @@
 {% block title %}Welcome to Django{% endblock %}
 {% block head %}Welcome to Django{% endblock %}
     {% block content %}
+        <div class="container" align="center" style="font-size: large">
+
         <p>Welcome to Create Group{{ user.username }} !!!</p>
     <form method="post" action="/createGroup/">{% csrf_token %}
         <table border="0">
@@ -20,5 +22,6 @@
 
         <br>
     <a href="/logout/">Logout</a>
+        </div>
 
 {% endblock %}
