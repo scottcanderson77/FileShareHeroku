@@ -314,7 +314,7 @@ def viewYourReports(request):
     reports = report.objects.filter(username_id=user)
     folders = folder.objects.filter(username_id=user)
     for g in user.groups.all():
-        reports = reports + g.report_document.objects.all()
+        reports = reports + g.groupreports_set
         folders = folder.objects.all().filter(username_id=user)
 
     return render(request, 'reports/viewYourReports.html', {'reports':reports, 'user': user, 'folders':folders })
