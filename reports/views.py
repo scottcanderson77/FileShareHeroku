@@ -314,7 +314,8 @@ def viewYourReports(request):
     reports = report.objects.filter(username_id=user)
     folders = folder.objects.filter(username_id=user)
     for g in user.groups.all():
-        groupNow = GroupReports.objects.get(group=g)
+        print(g)
+        groupNow = GroupReports.objects.get(group__exact=g)
         reports = reports + groupNow.report_document.objects.all()
         folders = folder.objects.all().filter(username_id=user)
 
